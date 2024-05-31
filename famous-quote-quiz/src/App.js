@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import MainPage from './pages/MainPage';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import SettingsPage from './pages/SettingsPage';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [mode, setMode] = useState('binary');
+
+    return (
+      <Router>
+        <nav>
+          <Link to="/">Home</Link>
+          <Link to="/settings">Settings</Link>
+        </nav>
+        <Routes>
+          <Route exact path="/" element={<MainPage mode={mode} />} />
+          <Route path="/settings" element={<SettingsPage mode={mode} setMode={setMode} />} />
+        </Routes>
+      </Router>
+    );
 }
 
 export default App;
