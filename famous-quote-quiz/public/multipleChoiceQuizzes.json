@@ -1,57 +1,124 @@
 [
     {
-        "id": "1",
-        "question": "What is the capital of France?",
-        "options": [
-            "Paris",
-            "London",
-            "Rome",
-            "Berlin"
-        ],
-        "answer": "Paris"
+        "id": "quiz2",
+        "name": "Iconic Sayings Quiz",
+        "questions": [
+            {
+                "id": "06",
+                "question": "Who wrote 'I have a dream'?",
+                "options": [
+                    "Benjamin Franklin",
+                    "Martin Luther King Jr.",
+                    "Malcolm X",
+                    "Nelson Mandela"
+                ],
+                "answer": "Martin Luther King Jr."
+            },
+            {
+                "id": "07",
+                "question": "Who wrote 'The unexamined life is not worth living'?",
+                "options": [
+                    "Benjamin Franklin",
+                    "Socrates",
+                    "Plato",
+                    "Aristotle"
+                ],
+                "answer": "Socrates"
+            },
+            {
+                "id": "08",
+                "question": "Who wrote 'E=mc²'?",
+                "options": [
+                    "Benjamin Franklin",
+                    "Albert Einstein",
+                    "Isaac Newton",
+                    "Niels Bohr"
+                ],
+                "answer": "Albert Einstein"
+            },
+            {
+                "id": "09",
+                "question": "Who wrote 'The only way to do great work is to love what you do'?",
+                "options": [
+                    "Benjamin Franklin",
+                    "Steve Jobs",
+                    "Bill Gates",
+                    "Warren Buffett"
+                ],
+                "answer": "Steve Jobs"
+            },
+            {
+                "id": "10",
+                "question": "Who wrote 'The journey of a thousand miles begins with one step'?",
+                "options": [
+                    "Benjamin Franklin",
+                    "Laozi",
+                    "Confucius",
+                    "Sun Tzu"
+                ],
+                "answer": "Laozi"
+            }
+        ]
     },
     {
-        "id": "2",
-        "question": "Who wrote 'To Kill a Mockingbird'?",
-        "options": [
-            "Harper Lee",
-            "Jane Austen",
-            "Mark Twain",
-            "J.K. Rowling"
-        ],
-        "answer": "Harper Lee"
-    },
-    {
-        "id": "3",
-        "question": "What is the chemical symbol for water?",
-        "options": [
-            "H2O",
-            "O2",
-            "CO2",
-            "H2"
-        ],
-        "answer": "H2O"
-    },
-    {
-        "id": "4",
-        "question": "Which planet is known as the Red Planet?",
-        "options": [
-            "Mars",
-            "Venus",
-            "Jupiter",
-            "Saturn"
-        ],
-        "answer": "Mars"
-    },
-    {
-        "id": "5",
-        "question": "Who developed the theory of relativity?",
-        "options": [
-            "Albert Einstein",
-            "Isaac Newton",
-            "Galileo Galilei",
-            "Nikola Tesla"
-        ],
-        "answer": "Albert Einstein"
+        "id": "quiz1",
+        "name": "Famous Quotes Quiz",
+        "questions": [
+            {
+                "id": "01",
+                "question": "Who wrote 'The only thing we have to fear is fear itself'?",
+                "options": [
+                    "Benjamin Franklin",
+                    "Franklin D. Roosevelt",
+                    "Thomas Jefferson",
+                    "Abraham Lincoln"
+                ],
+                "answer": "Franklin D. Roosevelt"
+            },
+            {
+                "id": "02",
+                "question": "Who wrote 'I think, therefore I am'?",
+                "options": [
+                    "Benjamin Franklin",
+                    "Rene Descartes",
+                    "John Locke",
+                    "David Hume"
+                ],
+                "answer": "Rene Descartes"
+            },
+            {
+                "id": "03",
+                "question": "Who wrote 'That's one small step for man, one giant leap for mankind'?",
+                "options": [
+                    "Benjamin Franklin",
+                    "Neil Armstrong",
+                    "Buzz Aldrin",
+                    "Yuri Gagarin"
+                ],
+                "answer": "Neil Armstrong"
+            },
+            {
+                "id": "04",
+                "question": "Who wrote 'In the beginning God created the heavens and the earth'?",
+                "options": [
+                    "Benjamin Franklin",
+                    "Moses",
+                    "Paul the Apostle",
+                    "King David"
+                ],
+                "answer": "Moses"
+            },
+            {
+                "id": "05",
+                "question": "Who wrote 'To be, or not to be, that is the question'?",
+                "options": [
+                    "Benjamin Franklin",
+                    "William Shakespeare",
+                    "John Milton",
+                    "Christopher Marlowe"
+                ],
+                "answer": "William Shakespeare"
+            }
+        ]
     }
 ]

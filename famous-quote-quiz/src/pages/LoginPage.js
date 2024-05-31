@@ -1,36 +1,78 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import UserRegistrationForm from '../components/UserRegistrationForm';
-import UserLoginForm from '../components/UserLoginForm';
+import { Container, Grid, Paper, Typography, TextField, Button, Link } from '@mui/material';
+import { styled } from '@mui/system';
+
+const StyledPaper = styled(Paper)({
+  padding: '20px',
+  textAlign: 'center',
+  marginTop: '20px',
+});
+
 
 const LoginPage = ({ onRegister, onLogin }) => {
   const [isRegistering, setIsRegistering] = useState(false);
   const navigate = useNavigate();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleLogin = (credentials) => {
-    onLogin(credentials);
+  const handleLogin = () => {
+    onLogin({ username, password });
     navigate('/');
+    setUsername('');
+    setPassword('');
   };
 
-  const handleRegister = (user) => {
-    onRegister(user);
+  const handleRegister = () => {
+    onRegister({ username, password });
     setIsRegistering(false);
+    setUsername('');
+    setPassword('');
   };
-
   return (
-    <div>
-      {isRegistering ? (
-        <>
-          <UserRegistrationForm onRegister={handleRegister} />
-          <button onClick={() => setIsRegistering(false)}>Already have an account? Login</button>
-        </>
-      ) : (
-        <>
-          <UserLoginForm onLogin={handleLogin} />
-          <button onClick={() => setIsRegistering(true)}>Don't have an account? Register</button>
-        </>
-      )}
-    </div>
+    <Container maxWidth="sm">
+      <StyledPaper>
+        <Typography variant="h4">{isRegistering ? 'Register' : 'Login'}</Typography>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              label="Username"
+              variant="outlined"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              type="password"
+              label="Password"
+              variant="outlined"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              onClick={isRegistering ? handleRegister : handleLogin}
+              variant="contained"
+              color="primary"
+            >
+              {isRegistering ? 'Register' : 'Login'}
+            </Button>
+          </Grid>
+        </Grid>
+        <Typography>
+          {isRegistering ? 'Already have an account? ' : "Don't have an account? "}
+          <Link href="#" onClick={() => setIsRegistering(!isRegistering)}>
+            {isRegistering ? 'Login' : 'Register'}
+          </Link>
+        </Typography>
+      </StyledPaper>
+    </Container>
   );
 };
 

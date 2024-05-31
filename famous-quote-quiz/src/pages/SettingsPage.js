@@ -1,6 +1,10 @@
 import React from 'react';
+import { useMode } from '../context/modeContext';
 
-const SettingsPage = ({ mode, setMode }) => {
+const SettingsPage = () => {
+
+  const { mode, setMode } = useMode();
+
   return (
     <div>
       <h1>Settings</h1>
