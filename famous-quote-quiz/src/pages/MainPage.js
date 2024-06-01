@@ -1,19 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Typography, List, ListItem, ListItemText, Button } from '@mui/material';
+import axios from 'axios';
+import { useMode } from '../context/modeContext';
 
-const MainPage = ({ mode }) => {
+
+const MainPage = () => {
   const [quizData, setQuizData] = useState([]);
+  const token = localStorage.getItem('token');
+  const { mode } = useMode();
+
+  const fetchQuizzes = useCallback(async () => {
+    try {
+      const response = await axios.get(`https://localhost:7250/Quotes/byType/${mode}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      console.log(response.data)
+      setQuizData(response.data);
+    } catch (error) {
+      console.error('Error fetching quizzes:', error);
+    }
+  }, [token, mode]);
 
   useEffect(() => {
-    const fetchQuizzes = async () => {
-      const response = await fetch(`/${mode === 'binary' ? 'binaryQuizzes' : 'multipleChoiceQuizzes'}.json`);
-      const data = await response.json();
-      setQuizData(data);
-    };
-
     fetchQuizzes();
-  }, [mode]);
+  }, [fetchQuizzes]);
 
   return (
     <div style={{ margin: '2rem', textAlign: 'center' }}>
@@ -21,7 +35,7 @@ const MainPage = ({ mode }) => {
         Available Quizzes
       </Typography>
       <List>
-        {quizData.map((quiz) => (
+        {quizData?.map((quiz) => (
           <ListItem key={quiz.id} style={{
             display: 'flex',
             justifyContent: 'space-between',

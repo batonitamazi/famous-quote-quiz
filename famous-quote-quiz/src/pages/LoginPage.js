@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Container, Grid, Paper, Typography, TextField, Button, Link } from '@mui/material';
+import { Container, Grid, Paper, Typography, TextField, Button, Link, Box } from '@mui/material';
 import { styled } from '@mui/system';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Avatar from '@mui/material/Avatar';
+
 
 const StyledPaper = styled(Paper)({
   padding: '20px',
@@ -32,8 +35,13 @@ const LoginPage = ({ onRegister, onLogin }) => {
   return (
     <Container maxWidth="sm">
       <StyledPaper>
-        <Typography variant="h4">{isRegistering ? 'Register' : 'Login'}</Typography>
-        <Grid container spacing={2}>
+        <Box display="flex" justifyContent="center" alignItems="center" width="100%">
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+        </Box>
+        <Typography variant="h4">{isRegistering ? 'Register' : 'Sign in'}</Typography>
+        <Grid container spacing={2} mt={2}>
           <Grid item xs={12}>
             <TextField
               fullWidth
@@ -61,14 +69,14 @@ const LoginPage = ({ onRegister, onLogin }) => {
               variant="contained"
               color="primary"
             >
-              {isRegistering ? 'Register' : 'Login'}
+              {isRegistering ? 'Sign up' : 'Sign in'}
             </Button>
           </Grid>
         </Grid>
-        <Typography>
+        <Typography mt={2}>
           {isRegistering ? 'Already have an account? ' : "Don't have an account? "}
           <Link href="#" onClick={() => setIsRegistering(!isRegistering)}>
-            {isRegistering ? 'Login' : 'Register'}
+            {isRegistering ? 'Sign in' : 'Sign up'}
           </Link>
         </Typography>
       </StyledPaper>

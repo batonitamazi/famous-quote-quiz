@@ -6,7 +6,7 @@ const SettingsPage = () => {
   const { mode, setMode } = useMode();
 
   const handleChange = () => {
-    setMode(mode === 'binary' ? 'multiple' : 'binary');
+    setMode(mode === 'binary' ? 'multiplechoice' : 'binary');
   };
 
   return (
@@ -19,7 +19,7 @@ const SettingsPage = () => {
         <Grid item>Binary (Yes/No)</Grid>
         <Grid item>
           <FormControlLabel
-            control={<Switch checked={mode === 'multiple'} onChange={handleChange} />}
+            control={<Switch checked={mode === 'multiplechoice'} onChange={handleChange} />}
           />
         </Grid>
         <Grid item>Multiple Choice</Grid>

@@ -9,7 +9,7 @@ import Navbar from "./components/Navbar";
 
 function App() {
   const [mode, setMode] = useState("binary");
-  const { user, loading, handleLogOut, handleRegister, handleLogin } = useAuth();
+  const { user, loading, handleLogout, handleRegister, handleLogin } = useAuth();
 
   const ProtectedRoute = ({ children }) => {
     if (loading) {
@@ -23,7 +23,7 @@ function App() {
 
   return (
     <Router>
-      <Navbar user={user} handleLogOut={handleLogOut} />
+      <Navbar user={user} handleLogout={handleLogout} />
       <Routes>
         <Route
           path="/"

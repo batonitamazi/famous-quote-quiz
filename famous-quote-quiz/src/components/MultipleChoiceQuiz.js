@@ -31,15 +31,17 @@ const MultipleChoiceQuiz = ({ quiz, onAnswer, onNextQuiz, isLastQuestion }) => {
   return (
     <Container maxWidth="sm">
       <Paper elevation={3} sx={{ padding: 2, marginTop: 4 }}>
-        <Typography variant="h6" gutterBottom>{quiz.question}</Typography>
+        <Typography variant="h6" gutterBottom mb={2}>{quiz.question}</Typography>
         {quiz.options.map((option, index) => (
           <Box
             key={index}
+            mt={1}
             sx={{
-              backgroundColor: '#e3f2fd',
+              backgroundColor: selectedOption === option ? '#bbdefb' : '#e3f2fd',
               padding: 1,
-              borderRadius: 4,
+              borderRadius: 2,
               marginBottom: 1,
+              transition: 'background-color 0.3s',
             }}
           >
             <FormControlLabel
@@ -62,6 +64,7 @@ const MultipleChoiceQuiz = ({ quiz, onAnswer, onNextQuiz, isLastQuestion }) => {
               color="primary"
               onClick={handleAnswer}
               disabled={selectedOption === null}
+              sx={{ width: '80%', height: '50px', fontSize: '16px' }}
             >
               Submit
             </Button>
@@ -76,6 +79,7 @@ const MultipleChoiceQuiz = ({ quiz, onAnswer, onNextQuiz, isLastQuestion }) => {
                 variant="contained"
                 color="primary"
                 onClick={handleNext}
+                sx={{ marginTop: 2 }}
               >
                 {isLastQuestion ? "Finish Quiz" : "Next"}
               </Button>

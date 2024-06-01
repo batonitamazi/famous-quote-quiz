@@ -3,9 +3,10 @@ import { AppBar, Toolbar, Typography, Button, Drawer, List, ListItem, ListItemTe
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
 
-const Navbar = ({ user, handleLogOut }) => {
+const Navbar = ({ user, handleLogout }) => {
     const [drawerOpen, setDrawerOpen] = useState(false);
     const isMobile = useMediaQuery('(max-width:600px)');
+
 
     const toggleDrawer = (open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -47,7 +48,7 @@ const Navbar = ({ user, handleLogOut }) => {
                                 <ListItemText primary="Settings" />
                             </ListItem>
                             {user && (
-                                <ListItem button onClick={() => { handleLogOut(); toggleDrawer(false); }}>
+                                <ListItem button onClick={() => { handleLogout(); toggleDrawer(false); }}>
                                     <ListItemText primary="Logout" />
                                 </ListItem>
                             )}
@@ -62,7 +63,7 @@ const Navbar = ({ user, handleLogOut }) => {
                         </Typography>
                         <Button component={Link} to="/" color="inherit">Home</Button>
                         <Button component={Link} to="/settings" color="inherit">Settings</Button>
-                        {user && <Button onClick={handleLogOut} color="inherit">Logout</Button>}
+                        {user && <Button onClick={handleLogout} color="inherit">Logout</Button>}
                     </Toolbar>
                 </AppBar>
             )}
