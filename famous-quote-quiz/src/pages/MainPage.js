@@ -1,82 +1,6 @@
-// import React, { useState, useEffect } from 'react';
-// import BinaryQuiz from '../components/BinaryQuiz';
-// import MultipleChoiceQuiz from '../components/MultipleChoiceQuiz';
-// import QuizResult from '../components/QuizResult';
-
-
-// const MainPage = ({ mode }) => {
-//   const [quizData, setQuizData] = useState([]);
-//   const [currentIndex, setCurrentIndex] = useState(0);
-//   const [showResult, setShowResult] = useState(false);
-//   const [correctCount, setCorrectCount] = useState(0);
-//   const [incorrectCount, setIncorrectCount] = useState(0);
-
-//   const handleNextQuiz = () => {
-//     setCurrentIndex((prevIndex) => {
-//       const newIndex = prevIndex + 1;
-//       return newIndex;
-//     });
-//     setShowResult(false);
-//   };
-
-//   const handleFinishQuiz = () => {
-//     setShowResult(true);
-//   };
-
-//   const handleAnswer = (isCorrect) => {
-//     if (isCorrect) {
-//       setCorrectCount((prevCount) => prevCount + 1);
-//     } else {
-//       setIncorrectCount((prevCount) => prevCount + 1);
-//     }
-//   };
-
-
-//   useEffect(() => {
-//     const fetchQuizzes = async () => {
-//       const response = await fetch(`/${mode === 'binary' ? 'binaryQuizzes' : 'multipleChoiceQuizzes'}.json`);
-//       const data = await response.json();
-//       setQuizData(data);
-//     };
-
-//     fetchQuizzes();
-//   }, [mode]);
-
-//   return (
-//     <div>
-//       {currentIndex < quizData.length && !showResult ? (
-//         <div key={currentIndex}>
-//           {mode === 'binary' ?
-//             <BinaryQuiz
-//               quiz={quizData[currentIndex]}
-//               onNextQuiz={handleNextQuiz}
-//               onAnswer={handleAnswer}
-//             /> :
-//             <MultipleChoiceQuiz
-//               quiz={quizData[currentIndex]}
-//               onNextQuiz={handleNextQuiz}
-//               onAnswer={handleAnswer}
-//             />
-//           }
-//         </div>
-//       ) : (
-//         <QuizResult
-//           correctCount={correctCount}
-//           incorrectCount={incorrectCount}
-//         />
-//       )}
-//       {currentIndex < quizData.length && showResult !== true && (
-//         <button onClick={handleFinishQuiz}>Finish Quiz</button>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default MainPage;
-
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Typography, List, ListItem, ListItemText, Button } from '@mui/material';
 
 const MainPage = ({ mode }) => {
   const [quizData, setQuizData] = useState([]);
@@ -92,16 +16,31 @@ const MainPage = ({ mode }) => {
   }, [mode]);
 
   return (
-    <div>
-      <h1>Available Quizzes</h1>
-      <ul>
+    <div style={{ margin: '2rem', textAlign: 'center' }}>
+      <Typography variant="h3" gutterBottom>
+        Available Quizzes
+      </Typography>
+      <List>
         {quizData.map((quiz) => (
-          <li key={quiz.id}>
-            <p>{quiz.name}</p>
-            <Link to={`/quiz/${quiz.id}`}>Start Quiz</Link>
-          </li>
+          <ListItem key={quiz.id} style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            padding: '1rem',
+            marginTop: '1rem',
+            borderRadius: '0.5rem',
+            background: '#e3f2fd',
+            boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
+            transition: 'box-shadow 0.3s ease',
+            ':hover': { boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)' }
+          }}>
+            <ListItemText primary={quiz.name} />
+            <Button variant="contained" color="primary" component={Link} to={`/quiz/${quiz.id}`}>
+              Start Quiz
+            </Button>
+          </ListItem>
         ))}
-      </ul>
+      </List>
     </div>
   );
 };

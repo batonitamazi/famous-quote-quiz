@@ -5,6 +5,7 @@ import QuizResult from '../components/QuizResult';
 import { useParams } from 'react-router-dom';
 
 import { useMode } from '../context/modeContext'
+import { Button, Box } from '@mui/material';
 
 function QuizPage() {
     const { mode } = useMode();
@@ -21,9 +22,6 @@ function QuizPage() {
         setShowResult(false);
     };
 
-    const handleFinishQuiz = () => {
-        setShowResult(true);
-    };
 
     const handleAnswer = (isCorrect) => {
         if (isCorrect) {
@@ -56,11 +54,13 @@ function QuizPage() {
                             quiz={quizData[currentIndex]}
                             onNextQuiz={handleNextQuiz}
                             onAnswer={handleAnswer}
+                            isLastQuestion={currentIndex === quizData.length - 1}
                         /> :
                         <MultipleChoiceQuiz
                             quiz={quizData[currentIndex]}
                             onNextQuiz={handleNextQuiz}
                             onAnswer={handleAnswer}
+                            isLastQuestion={currentIndex === quizData.length - 1}
                         />
                     }
                 </div>
@@ -70,9 +70,11 @@ function QuizPage() {
                     incorrectCount={incorrectCount}
                 />
             )}
-            {currentIndex < quizData.length && showResult !== true && (
-                <button onClick={handleFinishQuiz}>Finish Quiz</button>
-            )}
+            {/* {currentIndex === quizData.length - 1 && !showResult && (
+                <Box textAlign="center" mt={2}>
+                    <Button variant="contained" onClick={handleFinishQuiz}>Finish Quiz</Button>
+                </Box>
+            )} */}
         </div>
     )
 }

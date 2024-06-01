@@ -1,6 +1,13 @@
 import React, { useState } from "react";
+import {
+  Button,
+  Typography,
+  Container,
+  Paper,
+  Box,
+} from '@mui/material';
 
-const BinaryQuiz = ({ quiz, onNextQuiz, onAnswer }) => {
+const BinaryQuiz = ({ quiz, onNextQuiz, onAnswer, isLastQuestion }) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [showAnswer, setShowAnswer] = useState(false);
 
@@ -19,24 +26,47 @@ const BinaryQuiz = ({ quiz, onNextQuiz, onAnswer }) => {
   };
 
   return (
-    <div>
-      <p>{quiz.question}</p>
-      <div>
-        <button onClick={() => handleAnswer("Yes")} disabled={showAnswer}>
-          Yes
-        </button>
-        <button onClick={() => handleAnswer("No")} disabled={showAnswer}>
-          No
-        </button>
-      </div>
-      {showAnswer && (
-        <div>
-          <p>{quiz.answer === selectedOption ? "Correct!" : "Incorrect!"}</p>
-          <p>The correct answer is: {quiz.answer}</p>
-          <button onClick={handleNext}>Next</button>
-        </div>
-      )}
-    </div>
+    <Container maxWidth="sm">
+      <Paper elevation={3} sx={{ padding: 2, marginTop: 4 }}>
+        <Typography variant="h6" gutterBottom>{quiz.question}</Typography>
+        <Box display="flex" justifyContent="center" mt={2}>
+          <Button
+            variant="contained"
+            color="success"
+            onClick={() => handleAnswer("Yes")}
+            disabled={showAnswer}
+            sx={{ marginRight: 2 }}
+          >
+            Yes
+          </Button>
+          <Button
+            variant="contained"
+            color="error"
+            onClick={() => handleAnswer("No")}
+            disabled={showAnswer}
+          >
+            No
+          </Button>
+        </Box>
+        {showAnswer && (
+          <Box mt={2} textAlign="center">
+            <Typography variant="body1" color={quiz.answer === selectedOption ? 'success' : 'error'}>
+              {quiz.answer === selectedOption ? "Correct!" : "Incorrect!"}
+            </Typography>
+            <Typography variant="body2">The correct answer is: {quiz.answer}</Typography>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleNext}
+              sx={{ marginTop: 2 }}
+            >
+              {isLastQuestion ? "Finish Quiz" : "Next"}
+
+            </Button>
+          </Box>
+        )}
+      </Paper>
+    </Container>
   );
 };
 
