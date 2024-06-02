@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Typography, List, ListItem, ListItemText, Button } from '@mui/material';
-import axios from 'axios';
+import { fetchQuizzesByType } from '../api' // Adjust the path as needed
 import { useMode } from '../context/modeContext';
 
 
@@ -10,24 +10,19 @@ const MainPage = () => {
   const token = localStorage.getItem('token');
   const { mode } = useMode();
 
-  const fetchQuizzes = useCallback(async () => {
+  const fetchQuizzesByMode = useCallback(async () => {
     try {
-      const response = await axios.get(`https://localhost:7250/Quotes/byType/${mode}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        }
-      });
-      console.log(response.data)
-      setQuizData(response.data);
+      const data = await fetchQuizzesByType(mode, token);
+      setQuizData(data);
     } catch (error) {
       console.error('Error fetching quizzes:', error);
     }
-  }, [token, mode]);
+  }, [mode, token]);
+
 
   useEffect(() => {
-    fetchQuizzes();
-  }, [fetchQuizzes]);
+    fetchQuizzesByMode();
+  }, [fetchQuizzesByMode]);
 
   return (
     <div style={{ margin: '2rem', textAlign: 'center' }}>

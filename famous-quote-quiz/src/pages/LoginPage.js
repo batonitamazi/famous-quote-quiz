@@ -32,6 +32,7 @@ const LoginPage = ({ onRegister, onLogin }) => {
     setUsername('');
     setPassword('');
   };
+
   return (
     <Container maxWidth="sm">
       <StyledPaper>

@@ -21,6 +21,8 @@ function App() {
     return children;
   };
 
+
+
   return (
     <Router>
       <Navbar user={user} handleLogout={handleLogout} />
@@ -53,6 +55,7 @@ function App() {
           path="/login"
           element={<LoginPage onRegister={handleRegister} onLogin={handleLogin} />}
         />
+
       </Routes>
     </Router>
   );
